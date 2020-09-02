@@ -8,8 +8,6 @@ import threading
 class IOTNode:
     def __init__(self):
         self.packet_seq = 0  # get from reading input args
-        #self.forward_limit = int(random.uniform(2, 6))  # randomly chosen -> [2,5]
-        #self.process_time = int(random.uniform(3, 8))  # randomly chosen -> [3,7]
         self.UDP_ip = '127.0.0.1'
 
         self.number_of_fog_nodes = 0
@@ -63,10 +61,6 @@ class IOTNode:
     def random_number(self):
         return int(random.uniform(0, len(self.list_of_node_details)))
 
-        # response = ''
-        # self.visited = []
-        # self.job = processed by "xyz" node || forwarded by "xyz" node
-        # self.response = [self.pckt_seq, forward_limit,process-time, ip, port, self.visited, self.job, who processed]
 
     def request_generation(self):
         # message in a list
@@ -112,61 +106,8 @@ class IOTNode:
 
 
 new = IOTNode()
-# new.read_from_command_line()
-# new.request_generation()
 new.iot_node()
 
-"""
-    def send_req_to_fog(self):
 
-        initial_message = self.request_generation()
-        # self.UDP_IP = socket.gethostname()
-        # self.UDP_PORT = 1234
-
-        print(initial_message)
-
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.sendto(str(initial_message), (socket.gethostname(), 1234))
-
-    def receive_from_iot_node(self):
-
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.connect((socket.gethostname(), 1234))
-
-        message = s.recv(2048)
-        print message.decode()
-
-    ######## Psuedo test code ##############
-
-    def send_req_to_fog(self):
-
-        try:
-            message_to_send = self.request_generation()
-            sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-
-            count = 0
-
-            while (count < 100):
-                index = self.random_number()
-                ip_addr = self.list_of_node_details[index][0]
-                port = self.list_of_node_details[index][1]
-
-                sock.sendto(message_to_send, (ip_addr, port))
-                count += 1
-
-                sock.settimeout(3)
-
-        except:
-            print("Socket creation failed")
-
-    ##### 1  send to fog node #####
-    #     def send_to_fog_node(self):
-    #         message_to_send = self.request_generation()
-    #         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    #         sock.sendto(message_to_send,(self.UDP_ip,self.UDP_port))
-
-    ###### receive from fog node or cloud node  #######
-
-"""
 
 
